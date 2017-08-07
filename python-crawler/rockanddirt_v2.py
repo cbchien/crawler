@@ -4,19 +4,12 @@ Created on Mon Aug  7 11:42:36 2017
 
 @author: cbchien
 """
-# -*- coding: utf-8 -*-
 import requests
 import re
 from bs4 import BeautifulSoup
 import pandas as pd
 
 results = []
-
-'''
-http://www.rockanddirt.com/search?method=search&db=equipdb&catnum=1040&make=JOHN+DEERE&zip=&maxads=75
-http://www.rockanddirt.com/search?method=search&db=equipdb&catnum=1040&make=HITACHI&zip=&maxads=75
-http://www.rockanddirt.com/search?method=search&db=equipdb&catnum=1048&make=JCB&aucflg=&tot_cb=35&maxads=75
-'''
 
 mainCategoryUrl = {1048:"http://www.rockanddirt.com/equipment-for-sale/backhoes",
                    1040:"http://www.rockanddirt.com/equipment-for-sale/excavators",
@@ -26,12 +19,9 @@ mainCategoryUrl = {1048:"http://www.rockanddirt.com/equipment-for-sale/backhoes"
                    1036:"http://www.rockanddirt.com/equipment-for-sale/forklifts-mast",
                    1057:"http://www.rockanddirt.com/equipment-for-sale/motor-graders",
                    1026:"http://www.rockanddirt.com/equipment-for-sale/crawler-loaders"}
-'''
-indexs = [1048,1040,1206,1083,1173,1036,1057,1026]
-'''
+
 indexs = [1048,1040,1206,1083,1173,1036,1057,1026]
 maxads = 75
-
 
 for index in indexs:
     startNum = 1
@@ -48,9 +38,6 @@ for index in indexs:
         resultItems = soup.find_all("div", {"id":"result"}, True)
         
         for item in range(0, len(resultItems)):
-            '''
-            print('resultItems ',item)
-            '''
             name = re.sub('[\n\r]', '',resultItems[item].find("li", {"class":"main"}).text)
             location = re.sub('[\n\r]', '', resultItems[item].find("li", {"class":"location"}).text)
             price = re.sub('[\n\r]', '', resultItems[item].find("li", {"class":"price"}).text)
@@ -83,6 +70,5 @@ for index in indexs:
                     })
 
 df = pd.DataFrame(results)
-'''
-df.to_csv("results3.csv", sep=',', encoding='utf-8')
-'''
+
+df.to_csv("rockanddirt.csv", sep=',', encoding='utf-8')

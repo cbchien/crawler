@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+@author: cbchien
+"""
 import requests
 import re
 from bs4 import BeautifulSoup
@@ -60,4 +63,4 @@ jsondata = re.sub("\'\w{1}\s",'!',str(results)).replace("'",'"').replace('"- New
 
 df = pd.DataFrame(results)
 
-df.to_csv("results2.csv", sep=',', encoding='utf-8')
+df.to_csv("mascus.csv", sep=',', encoding='utf-8')

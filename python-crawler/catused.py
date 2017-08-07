@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import requests
 import re
-import csv
-import json
+import pandas as pd
+from bs4 import BeautifulSoup
+"""
+@author: cbchien
+"""
 
 results = []
 urls = ["http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
@@ -19,7 +22,6 @@ for url in urls:
     a = requests.get(url)
     maxnum = len(results)
     
-    from bs4 import BeautifulSoup
     soup = BeautifulSoup(a.text, 'html.parser')
     
     allitem = soup.find_all("span", {"itemprop":"name"}, True)
@@ -40,20 +42,9 @@ for url in urls:
         results[item]["year"] = re.sub('[\s+]', '', soup.find_all("p", {"class" : "year"}, True)[item-maxnum].text)
         results[item]["location"] = re.sub('[\s+]', '', soup.find_all("p", {"class" : "Location"}, True)[item-maxnum].text)
 
+df = pd.DataFrame(results)
 
-
-jsondata = str(results).replace("'",'"')
-print(jsondata)
-x = json.loads(jsondata)
-f = csv.writer(open("test.csv", "w+"))
-for x in x:
-    f.writerow([x["name"],
-                x["category"],
-                x["hour"],
-                x["price"],
-                x["year"],
-                x["location"],
-                x["url"]])
+df.to_csv("rockanddirt.csv", sep=',', encoding='utf-8')
     
 '''
 Track Excavators
