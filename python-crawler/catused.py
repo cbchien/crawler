@@ -8,15 +8,31 @@ from bs4 import BeautifulSoup
 """
 
 results = []
-urls = ["http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=2&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=3&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=4&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=2&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=3&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=4&epp=90&sf=relevance&so=false",
-        "http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=5&epp=90&sf=relevance&so=false"]
+urls = ["http://catused.cat.com/en/search_results_wide.html?et=_1003_9_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1003_9_&mfc=100&srg=_1_SWUS_&pnr=2&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1003_9_&mfc=100&srg=_1_SWUS_&pnr=3&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1003_9_&mfc=100&srg=_1_SWUS_&pnr=4&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1003_9_&mfc=100&srg=_1_SWUS_&pnr=5&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1023_91_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1023_91_&mfc=100&srg=_1_SWUS_&pnr=2&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1023_91_&mfc=100&srg=_1_SWUS_&pnr=3&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1023_91_&mfc=100&srg=_1_SWUS_&pnr=4&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1007_36_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1007_36_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1013_63_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1014_66_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1014_66_&mfc=100&srg=_1_SWUS_&pnr=2&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1014_66_&mfc=100&srg=_1_SWUS_&pnr=3&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1014_66_&mfc=100&srg=_1_SWUS_&pnr=4&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=2&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=3&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1011_38_&et=_1011_55_&mfc=100&srg=_1_SWUS_&pnr=4&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=1&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=2&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=3&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=4&epp=90&sf=relevance&so=false",
+"http://catused.cat.com/en/search_results_wide.html?et=_1016_152504_&et=_1016_79_&mfc=100&srg=_1_SWUS_&pnr=5&epp=90&sf=relevance&so=false"]
 
 for url in urls:
     a = requests.get(url)
@@ -32,19 +48,25 @@ for url in urls:
     print("Total of ",  len(allitem))
     print("start ", maxnum)
     print("End ", (maxnum + len(allitem)))
+    c = soup.find_all("span", {"itemprop":"category"}, True)
+    u = soup.find_all("span", {"itemprop":"url"}, True)
+    p = soup.find_all("li", {"class" : "final"}, True)
+    h = soup.find_all("p", {"class" : "hours"}, True)
+    y = soup.find_all("p", {"class" : "year"}, True)
+    l = soup.find_all("p", {"class" : "Location"}, True)
     for item in range(maxnum, (maxnum + len(allitem))):
         print(item)
         print((item-maxnum))
-        results[item]["category"] = soup.find_all("span", {"itemprop":"category"}, True)[item-maxnum].text
-        results[item]["url"] = soup.find_all("span", {"itemprop":"url"}, True)[item-maxnum]['content']
-        results[item]["price"] = re.sub('[\s+]', '', soup.find_all("li", {"class" : "final"}, True)[item-maxnum].text)
-        results[item]["hour"] = re.sub('[\s+]', '', soup.find_all("p", {"class" : "hours"}, True)[item-maxnum].text)
-        results[item]["year"] = re.sub('[\s+]', '', soup.find_all("p", {"class" : "year"}, True)[item-maxnum].text)
-        results[item]["location"] = re.sub('[\s+]', '', soup.find_all("p", {"class" : "Location"}, True)[item-maxnum].text)
+        results[item]["category"] = c[item-maxnum].text
+        results[item]["url"] = u[item-maxnum]['content']
+        results[item]["price"] = re.sub('[\s+]', '', p[item-maxnum].text)
+        results[item]["hour"] = re.sub('[\s+]', '', h[item-maxnum].text)
+        results[item]["year"] = re.sub('[\s+]', '', y[item-maxnum].text)
+        results[item]["location"] = re.sub('[\s+]', '', l[item-maxnum].text)
 
 df = pd.DataFrame(results)
 
-df.to_csv("rockanddirt.csv", sep=',', encoding='utf-8')
+df.to_csv("catused.csv", sep=',', encoding='utf-8')
     
 '''
 Track Excavators
