@@ -12,15 +12,17 @@ import pandas as pd
 
 results = []
 
-urls = ["http://www.equipmenttrader.com/Construction-Equipment/Excavators-For-Sale/search-results?category=Excavators|2000206"]
+urls = ["http://www.equipmenttrader.com/Construction-Equipment/Excavators-For-Sale/search-results?category=Excavators|2000206",
+        "http://www.equipmenttrader.com/Construction-Equipment/Dozers-For-Sale/search-results?category=Dozers|2000202",
+        "http://www.equipmenttrader.com/Construction-Equipment/Backhoes-For-Sale/search-results?category=Backhoes|2000200"]
 
 for url in urls:
     firstpage = requests.get(url)
     soup = BeautifulSoup(firstpage.text, 'html.parser')
-    maxPage = soup.find("span",{"id":"currentPagNum"}).nextSibling.split(" ")[2]
+    maxPage = int(soup.find("span",{"id":"currentPagNum"}).nextSibling.split(" ")[2])
     listing = []
     
-    for i in range(1,int(maxPage)+1):
+    for i in range(1,int((maxPage+1)/4*4)):
         currentUrl = url+"&page="+str(i)
         currentPage = requests.get(currentUrl)
         print(currentUrl)
